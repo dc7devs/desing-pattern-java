@@ -4,6 +4,7 @@ O projeto está configurado com o Gradle para facilitar a execução de cada des
 
 #### 📌 Requisitos
 
+- IntelliJ IDEA
 - JDK 17 ou superior
 - Gradle (ou `./gradlew`)
 
