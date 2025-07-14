@@ -1,6 +1,6 @@
 ### ⚙️ Execução com Gradle
 
-O projeto está configurado com o Gradle para facilitar a execução de cada desafio separadamente por meio de **tasks personalizadas**.
+O projeto está configurado com o Gradle para facilitar a execução de cada *desafio* separadamente por meio de **tasks personalizadas**.
 
 #### 📌 Requisitos
 
@@ -10,7 +10,7 @@ O projeto está configurado com o Gradle para facilitar a execução de cada des
 
 ### 🚀 Como Executar
 
-Você pode rodar qualquer desafio usando o seguinte comando no terminal:
+Qualquer desafio pode ser rodado usando o comando:
 
 ```bash
 ./gradlew <nomeDaTask>
