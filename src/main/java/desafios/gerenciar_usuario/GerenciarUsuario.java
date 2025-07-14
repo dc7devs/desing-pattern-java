@@ -1,8 +1,7 @@
 package desafios.gerenciar_usuario;
+// Design pattern: Prototype
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 class User {
     private final int id;
@@ -22,10 +21,10 @@ class User {
     }
 }
 
-
 class UserManager {
     private static UserManager instancia;
-    
+    private int nextId = 1;
+
     private UserManager() {
         super();
     }
@@ -38,24 +37,22 @@ class UserManager {
         return instancia;
     }
 
-    public void registerUser(List<User> users, String userName) {
-        int id = users.size() +1;
-        User new_user = new User(id, userName);
-
-        users.add(new_user);
+    public void registerUser(Map<Integer, User> userMap, String userName) {
+        User newUser = new User(nextId, userName);
+        userMap.put(nextId, newUser);
+        nextId++;
     }
 
-    public void listUsers(List<User> users) {
-        users.forEach(u -> {
-            System.out.println(String.format("%d - %s", u.getId(), u.getName()));
+    public void listUsers(Map<Integer, User> userMap) {
+        userMap.values().forEach(u -> {
+            System.out.printf("%d - %s%n", u.getId(), u.getName());
         });
     }
 }
 
-public class GerenciarUsuarioMain {
-
-    private static final List<User> users = new ArrayList<>();
-    private static UserManager userManager = UserManager.getInstancia();
+public class GerenciarUsuario {
+    private static final Map<Integer, User> users = new HashMap<>();
+    private static final UserManager userManager = UserManager.getInstancia();
 
     public static void addUser(String name) {
         userManager.registerUser(users, name);
@@ -66,14 +63,13 @@ public class GerenciarUsuarioMain {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        if (args.length == 0) {
+            System.out.println("Uso: <nome1> [<nome2> ...]");
+            return;
+        }
 
-        int quantity = scanner.nextInt();
-        scanner.nextLine();
-
-        for (int i = 1; i <= quantity; i++) {
-            String name = scanner.nextLine();
-            addUser(name);
+        for (String arg : args) {
+            addUser(arg);
         }
 
         listUsers();

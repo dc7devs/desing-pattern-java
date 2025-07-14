@@ -1,4 +1,5 @@
 package desafios.gerador_numero_aleatorio;
+// Design pattern: Strategy
 
 import java.security.SecureRandom;
 import java.util.Random;
@@ -7,9 +8,9 @@ interface NumberGeneratorStrategy {
     int generate(int min, int max);
 }
 
-// STRATEGIES ----
+// Strategies:
 
-// Strategy with Math.random()
+// with Math.random()
 class MathRandomGeneratorStrategy implements NumberGeneratorStrategy {
     @Override
     public int generate(int min, int max) {
@@ -17,7 +18,7 @@ class MathRandomGeneratorStrategy implements NumberGeneratorStrategy {
     }
 }
 
-// Strategy with security.SecureRandom
+// with security.SecureRandom
 class SecureRandomGeneratorStrategy implements NumberGeneratorStrategy {
     private final SecureRandom secureRandom = new SecureRandom();
 
@@ -27,7 +28,7 @@ class SecureRandomGeneratorStrategy implements NumberGeneratorStrategy {
     }
 }
 
-// Strategy with util.Random
+// with util.Random
 class DefaultRandomGeneratorStrategy implements NumberGeneratorStrategy {
     private final Random random;
 
@@ -41,9 +42,7 @@ class DefaultRandomGeneratorStrategy implements NumberGeneratorStrategy {
     }
 }
 
-// ------------------------------------------
-
-public class GenerateRadomNumber {
+public class GenerateRandomNumber {
     private final static int RANGE_MIN = 200;
     private final static int RANGE_MAX = 500;
 
@@ -52,6 +51,7 @@ public class GenerateRadomNumber {
         RandomGeneratorNumber generatorWithSecureRandom = new RandomGeneratorNumber(new SecureRandomGeneratorStrategy());
         RandomGeneratorNumber generatorWithDefaultRandom = new RandomGeneratorNumber(new DefaultRandomGeneratorStrategy());
 
+        System.out.println("Numeros gerados aleatoriamente: ");
         System.out.println(generatorWithMathRandom.generate(RANGE_MIN, RANGE_MAX));
         System.out.println(generatorWithSecureRandom.generate(RANGE_MIN, RANGE_MAX));
         System.out.println(generatorWithDefaultRandom.generate(RANGE_MIN, RANGE_MAX));

@@ -1,12 +1,11 @@
 package desafios.calculadora;
-
-import java.util.Scanner;
+// Design pattern: Strategy
 
 interface Operation {
     double execute(double num1, double num2);
 }
 
-// Implementações concretas do Strategy
+// Strategies:
 class AddOperation implements Operation {
     @Override
     public double execute(double num1, double num2) {
@@ -35,6 +34,7 @@ class DivideOperation implements Operation {
     }
 }
 
+// Context
 class Calculator {
     private Operation operation;
 
@@ -47,48 +47,30 @@ class Calculator {
     }
 }
 
-
-public class CalculadorSimplesMain {
-
+public class SimpleCalculator {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
         Operation addOperation = new AddOperation();
         Operation subtractOperation = new SubtractOperation();
         Operation multiplyOperation = new MultiplyOperation();
         Operation divideOperation = new DivideOperation();
 
-        // Criando a calculadora
         Calculator calculator = new Calculator();
 
-        // Obtendo os números do usuário
-        double num1 = scanner.nextDouble();
-        double num2 = scanner.nextDouble();
+        double num1 = Double.parseDouble(args[0]);
+        double num2 = Double.parseDouble(args[1]);
 
-        // Obtendo a operação desejada
-        String operationChoice = scanner.next();
+        Operation[] operations = {
+            addOperation,
+            subtractOperation,
+            multiplyOperation,
+            divideOperation
+        };
 
-        // Configurando a operação na calculadora
-        switch (operationChoice) {
-            case "+":
-                calculator.setOperation(addOperation);
-                break;
-            case "-":
-                calculator.setOperation(subtractOperation);
-                break;
-            case "*":
-                calculator.setOperation(multiplyOperation);
-                break;
-            case "/":
-                calculator.setOperation(divideOperation);
-                break;
-            default:
-                System.out.println("Operação inválida.");
-                return;
+        for (Operation op : operations) {
+            calculator.setOperation(op);
+
+            double result = calculator.performOperation(num1, num2);
+            System.out.println(result);
         }
-
-        // Realizando a operação e exibindo o resultado
-        double result = calculator.performOperation(num1, num2);
-        System.out.println(result);
     }
 }

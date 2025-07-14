@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'org.example'
@@ -16,4 +17,65 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+// tasks:
+
+task runGerenciarUsuario(type: JavaExec) {
+    group = 'application'
+    description = 'Executa a classe GerenciarUsuario (desafio de gerenciamento de usuários)'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('desafios.gerenciar_usuario.GerenciarUsuario')
+    args 'João', 'Maria'
+}
+
+task runJavaDatatypeCheck(type: JavaExec) {
+    group = 'application'
+    description = 'Executa a classe JavaDatatypeCheck (desafio de um identificador de tipagem de números)'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('desafios.java_datatype_check.JavaDatatypeCheck')
+    args 25, 2025, 1500000, 9876543210
+}
+
+task runGenerateRadomNumber(type: JavaExec) {
+    group = 'application'
+    description = 'Executa a classe GenerateRandomNumber (desafio de gerar numeros aleatoriamente)'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('desafios.gerador_numero_aleatorio.GenerateRandomNumber')
+}
+
+task runConversorMoeda(type: JavaExec) {
+    group = 'application'
+    description = 'Executa a classe ConversorMoeda (desafio conversor de moedas)'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('desafios.conversor_moeda.ConversorMoeda')
+    args 1, 25, 500, 25000
+}
+
+task runCatalogoDeProdutos(type: JavaExec) {
+    group = 'application'
+    description = 'Executa a classe CatalogoDeProdutos (desafio catalogo produto)'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('desafios.catalogo_produto.CatalogoDeProdutos')
+    args 'Escrivaninha', 'Cadeira de Escritório Ergonômica Giratória, Encosto de Cabeça Ajustável, Estofado Mesh, Tipo Presidente Confortável, Mecanismo de Elevação a gás, Inclinação, Preta e Branca | HYATTO OFFICE |', 597.98
+}
+
+task runCarrinhoDeCompra(type: JavaExec) {
+    group = 'application'
+    description = 'Executa a classe CarrinhoDeCompra (desafio carrinho de compra)'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('desafios.carrinho_compra.CarrinhoDeCompra')
+    args 'Havit Fone de Ouvido Headset', 155
+}
+
+task runSimpleCalculator(type: JavaExec) {
+    group = 'application'
+    description = 'Executa a classe SimpleCalculator (desafio calculadora)'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('desafios.calculadora.SimpleCalculator')
+    args 25, 5
+}
+
+application {
+    mainClass = 'Main'
 }

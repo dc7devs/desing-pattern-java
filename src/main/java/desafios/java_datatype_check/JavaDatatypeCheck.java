@@ -1,5 +1,4 @@
-package desafios.java_datatype;
-// HackerRank challenge
+package desafios.java_datatype_check;
 // Design pattern: Strategy
 
 import java.util.*;
@@ -29,10 +28,10 @@ class RangeChecker<T extends Number> implements TypeChecker<T> {
     }
 }
 
-public class JavaDatatype {
-    private List<TypeChecker<?>> checkers;
+public class JavaDatatypeCheck {
+    private final List<TypeChecker<?>> checkers;
 
-    public JavaDatatype() {
+    public JavaDatatypeCheck() {
         this.checkers = Arrays.asList(
                 new RangeChecker<>(Byte.class, Byte.MIN_VALUE, Byte.MAX_VALUE),
                 new RangeChecker<>(Short.class, Short.MIN_VALUE, Short.MAX_VALUE),
@@ -54,23 +53,13 @@ public class JavaDatatype {
 
             } catch (NumberFormatException ex) {
                 System.out.println(input+" can't be fitted anywhere.");
+                System.out.println("Uso: <nome1> [<nome2> ...]");
             }
         }
     }
 
     public static void main(String[] args) {
-        JavaDatatype soluction = new JavaDatatype();
-
-        Scanner leitor = new Scanner(System.in);
-        List<String> entries = new ArrayList<>();
-
-        int n = leitor.nextInt();
-        leitor.nextLine();
-
-        for(int i=1;i<=n;i++) {
-            entries.add(leitor.nextLine());
-        }
-
-        soluction.verifyFittedValue(entries);
+        (new JavaDatatypeCheck())
+                .verifyFittedValue(Arrays.stream(args).toList());
     }
 }

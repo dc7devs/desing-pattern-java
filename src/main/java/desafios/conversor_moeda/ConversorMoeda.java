@@ -1,6 +1,5 @@
 package desafios.conversor_moeda;
-
-import java.util.Scanner;
+// Design pattern: Adapter
 
 // Antiga classe de conversão que só suporta a conversão de USD para GBP
 class OldCurrencyConverter {
@@ -23,18 +22,18 @@ class CurrencyAdapter {
 }
 
 
-public class ConversorMoedaMain {
+public class ConversorMoeda {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        double input = Double.parseDouble(scanner.nextLine());
-
         OldCurrencyConverter oldConverter = new OldCurrencyConverter();
         CurrencyAdapter adapter = new CurrencyAdapter(oldConverter);
 
-        double output = adapter.convertUSDtoEUR(input);
+        for (String entrie : args) {
+            double input = Double.parseDouble(entrie);
+            double output = adapter.convertUSDtoEUR(input);
 
-        System.out.println("USD: " + input);
-        System.out.println("EUR: " + output);
+            System.out.println("--------");
+            System.out.println("USD: " + input);
+            System.out.println("EUR: " + output);
+        }
     }
 }
