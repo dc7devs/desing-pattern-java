@@ -1,5 +1,5 @@
 package desafios.gerenciar_usuario;
-// Design pattern: Prototype
+// Design pattern: Singleton, Focade
 
 import java.util.*;
 
